@@ -1,34 +1,33 @@
 // two function passed as parameter
 import { useState } from "react";
 
-function QuestionCard({ questionData, nextQuestion }) {
-  const [selectedOption, setSelectedOption] = useState(null);
+function QuestionCard({ data, nextQuestion }) {
+  const [selected, setSelected] = useState(null);
 
   function handleNext() {
-    const isCorrect = selectedOption === questionData.correctAnswer;
-    nextQuestion(isCorrect);
-    setSelectedOption(null);
+    nextQuestion(selected === data.correctAnswer);
+    setSelected(null);
   }
 
   return (
-    <div>
-      <h2>{questionData.question}</h2>
+    <div className="card slide-in">
+      <h2>{data.question}</h2>
 
-      {questionData.options.map((option, index) => (
+      {data.options.map((opt, i) => (
         <button
-          key={index}
-          onClick={() => setSelectedOption(index)}
-          style={{
-            display: "block",
-            margin: "8px 0",
-            backgroundColor: selectedOption === index ? "lightgreen" : "white",
-          }}
+          key={i}
+          className={selected === i ? "option active" : "option"}
+          onClick={() => setSelected(i)}
         >
-          {option}
+          {opt}
         </button>
       ))}
 
-      <button onClick={handleNext} disabled={selectedOption === null}>
+      <button
+        className="next-btn"
+        onClick={handleNext}
+        disabled={selected === null}
+      >
         Next
       </button>
     </div>

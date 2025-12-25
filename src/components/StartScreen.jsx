@@ -1,9 +1,9 @@
 // user saw this csreen first then clicking button to strat quiz
 function StartScreen({ startQuiz }) {
   return (
-    <div>
-      <h1>React Quiz App</h1>
-      <p>Test your basic React knowledge</p>
+    <div className="card fade-in">
+      <h1>React Quiz</h1>
+      <p>Test your React basics</p>
       <button onClick={startQuiz}>Start Quiz</button>
     </div>
   );
